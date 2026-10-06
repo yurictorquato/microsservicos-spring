@@ -5,7 +5,6 @@ import dev.yuritorquato.microsservicos_spring.model.User;
 import dev.yuritorquato.microsservicos_spring.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -31,9 +30,6 @@ public class UserService {
     }
 
     public UserDTO save(UserDTO userDTO) {
-        var usuario_temp = User.convert(userDTO);
-        usuario_temp.setDataCadastro(LocalDateTime.now());
-
         var usuario = userRepository.save(User.convert(userDTO));
 
         return UserDTO.convert(usuario);

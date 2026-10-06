@@ -1,10 +1,9 @@
 package dev.yuritorquato.microsservicos_spring.model;
 
 import dev.yuritorquato.microsservicos_spring.dto.UserDTO;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import org.hibernate.annotations.Generated;
+import org.hibernate.generator.EventType;
 
 import java.time.LocalDateTime;
 
@@ -12,31 +11,23 @@ import java.time.LocalDateTime;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     private String nome;
     private String cpf;
     private String endereco;
     private String email;
     private String telefone;
+    @Column(name = "data_cadastro", insertable = false, updatable = false)
+    @Generated(event = EventType.INSERT)
     private LocalDateTime dataCadastro;
 
-    public User(long id, String nome, String cpf, String endereco, String email, String telefone) {
-        this.id = id;
+    public User(String nome, String cpf, String endereco, String email, String telefone) {
         this.nome = nome;
         this.cpf = cpf;
         this.endereco = endereco;
         this.email = email;
         this.telefone = telefone;
     }
-
-//    public User(UserDTO userDTO) {
-//        this.nome = userDTO.nome();
-//        this.cpf = userDTO.cpf();
-//        this.endereco = userDTO.endereco();
-//        this.email = userDTO.email();
-//        this.telefone = userDTO.telefone();
-//        this.dataCadastro = userDTO.dataCadastro();
-//    }
 
     public User() {
     }
@@ -53,12 +44,8 @@ public class User {
         return user;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public String getNome() {
@@ -105,7 +92,4 @@ public class User {
         return dataCadastro;
     }
 
-    public void setDataCadastro(LocalDateTime dataCadastro) {
-        this.dataCadastro = dataCadastro;
-    }
 }

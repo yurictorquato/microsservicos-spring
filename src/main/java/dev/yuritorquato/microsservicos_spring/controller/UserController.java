@@ -1,9 +1,7 @@
 package dev.yuritorquato.microsservicos_spring.controller;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import dev.yuritorquato.microsservicos_spring.dto.UserDTO;
 import jakarta.validation.Valid;
@@ -20,9 +18,9 @@ public class UserController {
 
     @PostConstruct
     public void initializeList() {
-        var userDTO1 = new UserDTO("Yuri", "123", "Rua A", "yurictorquato@gmail.com", "1234-5678", LocalDateTime.now());
-        var userDTO2 = new UserDTO("Luiz", "456", "Rua B", "luiz@gmail.com", "1234-4321", LocalDateTime.now());
-        var userDTO3 = new UserDTO("Maiana", "789", "Rua A", "maiana@gmail.com", "5678-1234", LocalDateTime.now());
+        var userDTO1 = new UserDTO("Yuri", "123", "Rua A", "yurictorquato@gmail.com", "1234-5678");
+        var userDTO2 = new UserDTO("Luiz", "456", "Rua B", "luiz@gmail.com", "1234-4321");
+        var userDTO3 = new UserDTO("Maiana", "789", "Rua A", "maiana@gmail.com", "5678-1234");
 
         usuarios.add(userDTO1);
         usuarios.add(userDTO2);
@@ -43,7 +41,7 @@ public class UserController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public UserDTO inserir(@RequestBody @Valid UserDTO userDTO) {
-        var user = new UserDTO(userDTO.nome(), userDTO.cpf(), userDTO.endereco(), userDTO.email(), userDTO.telefone(), LocalDateTime.now());
+        var user = new UserDTO(userDTO.nome(), userDTO.cpf(), userDTO.endereco(), userDTO.email(), userDTO.telefone());
 
         usuarios.add(user);
 
