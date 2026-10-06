@@ -1,6 +1,5 @@
 package dev.yuritorquato.microsservicos_spring.model;
 
-import dev.yuritorquato.microsservicos_spring.dto.UserDTO;
 import jakarta.persistence.*;
 import org.hibernate.annotations.Generated;
 import org.hibernate.generator.EventType;
@@ -30,18 +29,6 @@ public class User {
     }
 
     public User() {
-    }
-
-    public static User convert(UserDTO userDTO) {
-        var user = new User();
-
-        user.setNome(userDTO.nome());
-        user.setCpf(userDTO.cpf());
-        user.setEndereco(userDTO.endereco());
-        user.setEmail(userDTO.email());
-        user.setTelefone(userDTO.telefone());
-
-        return user;
     }
 
     public Long getId() {
